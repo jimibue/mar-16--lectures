@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, TableHeader } from "semantic-ui-react";
+import { Form, TableHeader, Button } from "semantic-ui-react";
 
 export default class TodoForm extends React.Component {
   state = { name: "" };
@@ -10,12 +10,13 @@ export default class TodoForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
     // we need some to get access to to our todos
+    this.props.addTodo(this.state)
     this.setState({name:''})
   };
 
   render() {
     return (
-      <Form onSubmit>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Input
           label="Todo"
           placeholder="Add A Todo"
@@ -23,6 +24,7 @@ export default class TodoForm extends React.Component {
           value={this.state.name}
           onChange={this.handleChange}
         />
+       <Button type='submit'>add</Button>
       </Form>
     );
   }
