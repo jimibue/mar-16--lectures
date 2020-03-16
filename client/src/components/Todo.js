@@ -1,10 +1,40 @@
 import React from "react";
+import { Checkbox, Header, Button, Icon } from "semantic-ui-react";
 
-const Todo = ({ id, complete, name }) => (
-  <div>
-    {name}
-    <p>{id}</p>
+const Todo = ({ id, complete, name, deleteTodo, updateTodo }) => (
+  <div style={styles.flex}>
+    <div style={styles.flex}>
+      <Checkbox defaultChecked={complete} onClick={() => updateTodo(id)} />
+      <div style={complete ? styles.complete : {}} className="center">
+        <Header as="h2" style={{ marginLeft: "15px" }}>
+          {name}
+        </Header>
+      </div>
+    </div>
+    <Button
+      icon
+      color="red"
+      size="tiny"
+      onClick={() => deleteTodo(id)}
+      style={{ marginLeft: "15px" }}
+    >
+       <Icon name="trash" />
+    </Button>
   </div>
 );
 
-export default Todo
+const styles = {
+  flex: {
+    display: "flex",
+    alignItems: "center"
+  },
+  pointer: {
+    cursor: "pointer"
+  },
+  complete: {
+    textDecoration: "line-trough",
+    color: "grey"
+  }
+};
+
+export default Todo;

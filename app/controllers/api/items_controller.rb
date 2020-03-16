@@ -19,13 +19,13 @@ class Api::ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
+    item = Item.find(params[:id]).destroy
     render json: { message: "Item deleted" }
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :completed)
+    params.require(:item).permit(:name, :complete)
   end
 end
